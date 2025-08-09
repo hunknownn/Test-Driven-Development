@@ -1,4 +1,4 @@
 class Dollar(
     amount: Int
-): Money(amount) {
+) : Money(amount) {
 }

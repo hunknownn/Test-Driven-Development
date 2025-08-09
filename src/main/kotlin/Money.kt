@@ -9,6 +9,7 @@ open class Money(
 
     override fun equals(other: Any?): Boolean {
         if (other is Money) {
+            if(this.javaClass != other.javaClass) return false
             return this.amount == other.amount
         }
         return false
