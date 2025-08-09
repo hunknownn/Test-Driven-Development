@@ -3,8 +3,8 @@ class Dollar(
 ) {
     private val amount: Int = amount
 
-    fun times(multiplier: Int): Int {
-        return this.amount * multiplier
+    fun times(multiplier: Int): Dollar {
+        return Dollar(this.amount * multiplier)
     }
 
     override fun equals(other: Any?): Boolean {
