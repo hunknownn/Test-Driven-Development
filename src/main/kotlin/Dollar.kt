@@ -6,4 +6,12 @@ class Dollar(
     fun times(multiplier: Int): Int {
         return this.amount * multiplier
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other is Dollar) {
+            return this.amount == other.amount
+        }
+
+        return false
+    }
 }
