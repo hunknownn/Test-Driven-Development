@@ -8,6 +8,12 @@ import kotlin.test.assertTrue
 
 class MoneyTest {
     @Test
+    fun testCurrency() {
+        assertEquals("USD", Money.dollar(1).currency())
+        assertEquals("CHF", Money.franc(1).currency())
+    }
+
+    @Test
     fun testMultiplication() {
         val five = Money.dollar(5)
         assertEquals(Money.dollar(10), five.times(2))

@@ -1,7 +1,10 @@
 abstract class Money(
-    amount: Int
+    amount: Int,
+    currency: String,
 ) {
     protected val amount: Int = amount
+
+    protected val currency: String = currency
 
     companion object {
         fun dollar(amount: Int): Money = Dollar(amount)
@@ -10,6 +13,8 @@ abstract class Money(
     }
 
     abstract fun times(multiplier: Int): Money
+
+    abstract fun currency() : String
 
     override fun equals(other: Any?): Boolean {
         if (other is Money) {
