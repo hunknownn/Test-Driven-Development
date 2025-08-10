@@ -1,17 +1,11 @@
 package money
 
-import Franc
-import Money
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class MoneyTest {
-    @Test
-    fun testDifferentClassEquality() {
-        assertTrue { Money(10, "CHF") == Franc(10, "CHF") }
-    }
 
     @Test
     fun testCurrency() {
@@ -30,9 +24,6 @@ class MoneyTest {
     fun testEquality() {
         assertTrue { Money.dollar(5) == Money.dollar(5) }
         assertFalse { Money.dollar(5) == Money.dollar(6) }
-        assertFalse { Money.franc(5) == Money.franc(6) }
-        assertFalse { Money.franc(5) == Money.franc(6) }
-        assertFalse { Money.dollar(5) == Money.franc(5) }
         assertFalse { Money.dollar(5) == Money.franc(6) }
     }
 

@@ -25,6 +25,6 @@ open class Money(
     }
 
     override fun toString(): String {
-        return "Money(amount=$amount, currency='$currency')"
+        return "${this.javaClass}(amount=$amount, currency='$currency')"
     }
 }
