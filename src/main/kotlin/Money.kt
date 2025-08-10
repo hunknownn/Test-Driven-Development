@@ -1,7 +1,7 @@
 open class Money(
     amount: Int,
     currency: String,
-) : Expression{
+) : Expression {
 
     companion object {
         fun dollar(amount: Int): Money = Dollar(amount)
@@ -9,13 +9,21 @@ open class Money(
         fun franc(amount: Int): Money = Franc(amount)
     }
 
-    protected val amount: Int = amount
+    val amount: Int = amount
 
     protected val currency: String = currency
 
     open fun times(multiplier: Int): Money = Money(amount * multiplier, currency)
 
     open fun currency(): String = currency
+
+    override fun reduce(currency: String): Money {
+        return this
+    }
+
+    operator fun plus(addend: Money): Expression {
+        return Sum(this, addend)
+    }
 
     override fun equals(other: Any?): Boolean {
         if (other is Money) {
@@ -26,9 +34,5 @@ open class Money(
 
     override fun toString(): String {
         return "${this.javaClass}(amount=$amount, currency='$currency')"
-    }
-
-    operator fun plus(addend: Money): Expression {
-        return Money(this.amount + addend.amount, this.currency)
     }
 }
