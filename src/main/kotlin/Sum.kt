@@ -1,16 +1,16 @@
 class Sum(
-    augend: Money,
-    addend: Money
+    augend: Expression,
+    addend: Expression
 ) : Expression {
     val augend = augend
     val addend = addend
 
-    override fun reduce(currency: String): Money {
-        return Money(augend.amount + addend.amount, currency)
+    override fun reduce(bank: Bank, currency: String): Money {
+        val amount = augend.reduce(bank, currency).amount + addend.reduce(bank, currency).amount
+        return Money(amount, currency)
     }
 
-    override fun reduce(bank: Bank, currency: String): Money {
-        val amount = augend.amount + addend.amount
-        return Money(amount, currency)
+    override fun plus(addend: Expression): Expression {
+        return Money(0, "")
     }
 }

@@ -13,21 +13,16 @@ open class Money(
 
     protected val currency: String = currency
 
-    open fun times(multiplier: Int): Money = Money(amount * multiplier, currency)
+    open fun times(multiplier: Int): Expression = Money(amount * multiplier, currency)
 
     open fun currency(): String = currency
-
-    override fun reduce(currency: String): Money {
-        val rate = if (this.currency.equals("CHF") && currency.equals("USD")) 2 else 1
-        return Money(amount / rate, currency)
-    }
 
     override fun reduce(bank: Bank, currency: String): Money {
         val rate = bank.rate(this.currency, currency)
         return Money(amount / rate, currency)
     }
 
-    operator fun plus(addend: Money): Expression {
+    override operator fun plus(addend: Expression): Expression {
         return Sum(this, addend)
     }
 

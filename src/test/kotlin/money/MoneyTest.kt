@@ -9,6 +9,16 @@ import kotlin.test.*
 class MoneyTest {
 
     @Test
+    fun testMixedAddition() {
+        val fiveBucks: Expression = Money.dollar(5)
+        val tenFrancs: Expression = Money.franc(10)
+        val bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val result = bank.reduce(fiveBucks.plus(tenFrancs), "USD")
+        assertEquals(Money.dollar(10), result)
+    }
+
+    @Test
     fun testIdentityRate() {
         assertEquals(1, Bank().rate("USD", "USD"))
         assertEquals(1, Bank().rate("CHF", "CHF"))
