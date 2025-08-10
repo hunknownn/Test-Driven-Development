@@ -1,11 +1,22 @@
 package money
 
+import Bank
+import Money
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class MoneyTest {
+
+    @Test
+    fun testSimpleAddition() {
+        val five = Money.dollar(5)
+        val sum = five + five
+        val bank = Bank()
+        val reduced = bank.reduce(sum, "USD")
+        assertEquals(Money.dollar(10), reduced)
+    }
 
     @Test
     fun testCurrency() {

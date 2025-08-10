@@ -1,7 +1,7 @@
 open class Money(
     amount: Int,
     currency: String,
-) {
+) : Expression{
 
     companion object {
         fun dollar(amount: Int): Money = Dollar(amount)
@@ -26,5 +26,9 @@ open class Money(
 
     override fun toString(): String {
         return "${this.javaClass}(amount=$amount, currency='$currency')"
+    }
+
+    operator fun plus(addend: Money): Expression {
+        return Money(this.amount + addend.amount, this.currency)
     }
 }
