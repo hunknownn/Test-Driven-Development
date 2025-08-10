@@ -4,12 +4,28 @@ import Bank
 import Expression
 import Money
 import Sum
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class MoneyTest {
+
+    @Test
+    fun testIdentityRate() {
+        assertEquals(1, Bank().rate("USD", "USD"))
+        assertEquals(1, Bank().rate("CHF", "CHF"))
+    }
+
+    @Test
+    fun testArrayEquals() {
+        assertContentEquals(listOf("abc"), listOf("abc"))
+    }
+
+    @Test
+    fun testReduceMoneyDifferentCurrency() {
+        val bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val result = bank.reduce(Money.franc(2), "USD")
+        assertEquals(Money.dollar(1), result)
+    }
 
     @Test
     fun testReduceMoney() {
