@@ -1,10 +1,7 @@
-abstract class Money(
+open class Money(
     amount: Int,
     currency: String,
 ) {
-    protected val amount: Int = amount
-
-    protected val currency: String = currency
 
     companion object {
         fun dollar(amount: Int): Money = Dollar(amount)
@@ -12,15 +9,22 @@ abstract class Money(
         fun franc(amount: Int): Money = Franc(amount)
     }
 
-    abstract fun times(multiplier: Int): Money
+    protected val amount: Int = amount
 
-    abstract fun currency() : String
+    protected val currency: String = currency
+
+    open fun times(multiplier: Int): Money = Money(amount * multiplier, currency)
+
+    open fun currency(): String = currency
 
     override fun equals(other: Any?): Boolean {
         if (other is Money) {
-            if (this.javaClass != other.javaClass) return false
-            return this.amount == other.amount
+            return this.currency == other.currency() && this.amount == other.amount
         }
         return false
+    }
+
+    override fun toString(): String {
+        return "Money(amount=$amount, currency='$currency')"
     }
 }

@@ -1,5 +1,6 @@
 package money
 
+import Franc
 import Money
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -7,6 +8,11 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class MoneyTest {
+    @Test
+    fun testDifferentClassEquality() {
+        assertTrue { Money(10, "CHF") == Franc(10, "CHF") }
+    }
+
     @Test
     fun testCurrency() {
         assertEquals("USD", Money.dollar(1).currency())

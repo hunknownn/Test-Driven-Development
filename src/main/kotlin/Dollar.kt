@@ -1,10 +1,7 @@
 class Dollar(
-    amount: Int
-) : Money(amount, "USD") {
+    amount: Int,
+    currency: String = "USD",
+) : Money(amount, currency) {
 
-    override fun times(multiplier: Int): Money {
-        return dollar(amount * multiplier)
-    }
-
-    override fun currency(): String = currency
+    override fun toString(): String = "$amount $currency"
 }

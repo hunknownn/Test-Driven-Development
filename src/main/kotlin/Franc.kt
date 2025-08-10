@@ -1,10 +1,7 @@
 class Franc(
-    amount: Int
-) : Money(amount, "CHF") {
+    amount: Int,
+    currency: String = "CHF",
+) : Money(amount, currency) {
 
-    override fun times(multiplier: Int): Money {
-        return franc(amount * multiplier)
-    }
-
-    override fun currency(): String = currency
+    override fun toString(): String = "$amount $currency"
 }
