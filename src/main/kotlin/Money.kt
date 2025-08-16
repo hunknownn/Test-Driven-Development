@@ -13,7 +13,7 @@ open class Money(
 
     protected val currency: String = currency
 
-    open fun times(multiplier: Int): Expression = Money(amount * multiplier, currency)
+    override fun times(multiplier: Int): Expression = Money(amount * multiplier, currency)
 
     open fun currency(): String = currency
 
